@@ -165,7 +165,6 @@ module GitFlow
 
     def start
       @base ||= @master_branch
-      require_version_arg
       require_base_is_on_master
       require_no_existing_hotfix_branches
 
@@ -198,8 +197,6 @@ module GitFlow
     end
 
     def finish
-      require_version_arg
-
       # handle flags that imply other flags
       @options.sign = true if @options.signingkey
 
