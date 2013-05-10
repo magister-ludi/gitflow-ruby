@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require(File.join(File.dirname(__FILE__), "git-flow"))
+
+if ARGV.size != 1
+  abort "usage: #{File.basename(__FILE__)} <version-id>"
+end
+
+include GitFlow::Common
+
+success = false
+Dir.chdir(File.dirname(__FILE__)) do
+  vfile = File.join('modules', 'git-flow-version.rb')
+  lines = File.readlines(vfile)
+  lines.each do |line|
+    success = true if line.sub!(/(GITFLOW_VERSION = ).+$/) { |m| $1 + ARGV[0] }
+  end
+  abort "Could not replace GITFLOW_VERSION variable." unless success
+
+  File.open(vfile, 'w') do |out|
+    out.puts lines
+  end
+
+  abort "Failed to prepare #{vfile} for commit" unless
+    run_successful("git add #{vfile}")
+  abort "Failed to commit #{vfile}" unless
+    run_successful("git commit -m 'Bumped version number to #{ARGV[0]}' #{vfile}")
+  puts "Successfully changed version number to '#{ARGV[0]}'."
+end

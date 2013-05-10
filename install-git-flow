@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+include FileUtils
+
+def install(src, dst, mode = 0644)
+  rm(dst) if File.exist?(dst)
+  mkdir_p(File.dirname(dst))
+  cp(src, dst)
+  File.chmod(mode, dst)
+end
+
+git = nil
+ENV['PATH'].split(/[:;]/).each do |dir|
+  trial = File.join(dir, 'git')
+  if File.exist?(trial) and File.executable?(trial)
+    git = trial
+    break
+  end
+end
+abort "Can't find git executable in path" unless git
+ipath = File.dirname(git)
+mode = File.stat(git).mode
+
+homedir = File.expand_path(File.dirname(__FILE__))
+
+install(File.join(homedir, 'git-flow.rb'), File.join(ipath, 'git-flow'), mode)
+Dir[File.join(homedir, 'modules', '*flow*.rb')].each do |mod|
+  install(mod, File.join(ipath, 'modules', File.basename(mod)))
+end
