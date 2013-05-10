@@ -4,7 +4,7 @@
 
 module GitFlow
   class Version
-    GITFLOW_VERSION = 0.5
+    GITFLOW_VERSION = 0.5a
 
     def initialize(args)
       if args.size > 0
