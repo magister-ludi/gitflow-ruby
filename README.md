@@ -7,7 +7,7 @@ Driessen's [branching model](http://nvie.com/git-model "original blog post").
 
 Licence terms
 -------------
-gitflow-ruby is published under the same terms as [nvie/gitflow](https://github.com/nvie/gitflow, see the
+gitflow-ruby is published under the same terms as [nvie/gitflow](https://github.com/nvie/gitflow), see the
 [LICENCE](LICENCE) file. Although the BSD Licence does not require you to share
 any modifications you make to the source code, you are very much encouraged and
 invited to contribute back your modifications to the community.
@@ -18,7 +18,7 @@ Prerequisites
 -------------
 You will need to install git and ruby in order to run gitflow-ruby. Ruby 2.0.0
 was used to develop gitflow-ruby, but it should also work with ruby 1.9.x.
-See [README.orig.]() for instructions on why yiu might want to use
+See [README.orig](README.orig.md) for instructions about why you might want to use
 gitflow-ruby, and how to use it.
 
 Installing gitflow-ruby
