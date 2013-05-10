@@ -24,8 +24,11 @@ gitflow-ruby, and how to use it.
 Installing gitflow-ruby
 -----------------------
 Clone this repository. Then, run the installer:
+
     git clone https://github.com/magister-ludi/gitflow-ruby.git
     cd gitflow-ruby
     ruby install-git-flow
+
 You may need to run the final command with superuser privileges, e.g.
+
     sudo ruby install-git-flow
